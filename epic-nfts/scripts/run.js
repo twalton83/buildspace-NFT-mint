@@ -1,4 +1,6 @@
+require("dotenv").config()
 const main = async  () => {
+  console.log('running')
   const nftContractFactory = await hre.ethers.getContractFactory('MyEpicNFT');
   const nftContract = await nftContractFactory.deploy();
   await nftContract.deployed();
