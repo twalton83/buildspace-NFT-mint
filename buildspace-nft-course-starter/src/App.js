@@ -148,7 +148,7 @@ const App = () => {
           </div>
           )}
           {minting ? <p className="sub-text">Currently minting... hang tight!</p> : null}
-          <p className="sub-text">Check out the <a href="https://ropsten.rarible.com/collection/0x1e4a7c017913b516069bba5a134bbdfd54c2239d" target="_blank">collection</a></p>
+          <p className="sub-text">Check out the <a href={`https://ropsten.rarible.com/collection/${CONTRACT_ADDRESS}`} target="_blank">collection</a></p>
         </div>
       </div>
     </div>
