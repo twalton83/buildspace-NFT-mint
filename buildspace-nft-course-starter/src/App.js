@@ -4,8 +4,7 @@ import React, {useEffect, useState} from "react";
 import {ethers} from 'ethers';
 import myEpicNft from './utils/MyEpicNFT.json';
 
-const GALLERY_LINK = '';
-const CONTRACT_ADDRESS = "0x1e4A7c017913b516069bBa5a134bBDFD54C2239d"
+const CONTRACT_ADDRESS = "0x832390dCa6B575E054499Ff37D4CF1da93A17eA3"
 
 const App = () => {
 
@@ -115,7 +114,7 @@ const App = () => {
         const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNft.abi, signer);
         connectedContract.on("NewNFTMinted", (from, tokenId) => {
           console.log(from, tokenId.toNumber())
-          alert(`Hey there! We've minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on OpenSea. Here's the link: https://ropsten.rarible.com/token/${CONTRACT_ADDRESS}/${tokenId.toNumber()}`)
+          alert(`Hey there! We've minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on OpenSea. Here's the link: https://ropsten.rarible.com/token/${CONTRACT_ADDRESS}:${tokenId.toNumber()}`)
         });
 
         console.log("Setup event listener!")
