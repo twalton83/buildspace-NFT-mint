@@ -11,6 +11,7 @@ const App = () => {
   const [currentAccount, setCurrentAccount] = useState("");
   const [NFTLimitReached, setNFTLimitReached] = useState(false); 
   const [minting, setMinting] = useState(false);
+  const [showNewlyMintedUrl, setShowNewlyMintedUrl] = useState(false);
 
   const checkIfWalletIsConnected = async () => {
     const {ethereum } = window;
@@ -114,7 +115,7 @@ const App = () => {
         const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNft.abi, signer);
         connectedContract.on("NewNFTMinted", (from, tokenId) => {
           console.log(from, tokenId.toNumber())
-          alert(`Hey there! We've minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on OpenSea. Here's the link: https://ropsten.rarible.com/token/${CONTRACT_ADDRESS}:${tokenId.toNumber()}`)
+          setShowNewlyMintedUrl(true)
         });
 
         console.log("Setup event listener!")
@@ -148,6 +149,7 @@ const App = () => {
           </div>
           )}
           {minting ? <p className="sub-text">Currently minting... hang tight!</p> : null}
+          {showNewlyMintedUrl ? <p className ="sub-text">`Hey there! We've minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on OpenSea. Here's the <a href={`https://ropsten.rarible.com/token/${CONTRACT_ADDRESS}:${tokenId.toNumber()}`}>link!</a></p> : null}
           <p className="sub-text">Check out the <a href={`https://ropsten.rarible.com/collection/${CONTRACT_ADDRESS}`} target="_blank">collection</a></p>
         </div>
       </div>
